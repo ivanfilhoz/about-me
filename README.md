@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite with `/about-me/`, normally `http://localhost:5173/about-me/`.
+Open the root URL printed by Vite, normally `http://localhost:5173/`.
 
 ## Validation and production preview
 
@@ -25,7 +25,7 @@ npm run test:browser    # Starts its own production preview
 npm run preview -- --host 127.0.0.1
 ```
 
-The production preview is at `http://127.0.0.1:4173/about-me/`. Browser checks require an existing build and cover 320, 390, 768, and 1440px viewports, WCAG A/AA axe checks, navigation by keyboard, reduced motion, approved links, and asset paths. Screenshots are saved under ignored `test-results/`; visually inspect desktop and mobile screenshots as well as the automated results. Axe checks are a useful automated baseline, not a complete accessibility certification.
+The production preview is at `http://127.0.0.1:4173/`. Browser checks require an existing build and cover 320, 390, 768, and 1440px viewports, WCAG A/AA axe checks, navigation by keyboard, reduced motion, approved links, and asset paths. Screenshots are saved under ignored `test-results/`; visually inspect desktop and mobile screenshots as well as the automated results. Axe checks are a useful automated baseline, not a complete accessibility certification.
 
 ## GitHub Pages
 
@@ -33,9 +33,11 @@ The production preview is at `http://127.0.0.1:4173/about-me/`. Browser checks r
 
 The repository is configured to use **GitHub Actions** as its Pages source (verified on October 8, 2026). For a fork or a reset, select it in **Settings → Pages → Build and deployment** before the first deployment. After a reviewed PR is merged into `main`, the workflow deploys automatically; `workflow_dispatch` can redeploy `main`. Neither `dist/` nor `node_modules/` belongs in Git.
 
-Expected public URL: <https://ivanfilhoz.github.io/about-me/>. This address is a deployment target, not a claim that the site is live. Confirm the workflow completed, then open that URL and check the rendered page and its assets before sharing it as published. A pull request does not create a public preview.
+Expected public URL: <https://about.ivanfilho.com/>. This address is a deployment target, not a claim that the site is live. Confirm the workflow completed, then open that URL and check the rendered page and its assets before sharing it as published. A pull request does not create a public preview.
 
-Vite's base is `/about-me/`. Keep asset references base-aware; changing the repository name or moving to a custom domain also requires updating this setting and rechecking the production build.
+Vite's base is `/` for the custom-domain root. Keep asset references base-aware and canonical/social URL metadata in `index.html` consistent with the target domain. Browser checks run against the root preview and verify that scripts, styles and the favicon load as assets, not HTML fallbacks.
+
+DNS and GitHub Pages custom-domain settings are coordinated separately by Julia. This code change does not configure those settings; deployment and domain readiness must both be verified before announcing the new URL as live.
 
 ## Content boundaries
 

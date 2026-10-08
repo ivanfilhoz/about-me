@@ -59,7 +59,7 @@ test('reduced motion and a 200 percent zoom layout remain usable', async ({ page
   await expect(page.getByRole('link', { name: 'i@ivanfilho.com', exact: true })).toBeVisible()
 })
 
-test('only approved external links are offered and assets stay under the Pages base', async ({ page }) => {
+test('only approved external links are offered and assets load from the custom-domain root', async ({ page }) => {
   await page.goto('./')
   const hrefs = await page.locator('a[href]').evaluateAll(links => links.map(link => link.getAttribute('href')!))
   const allowed = new Set([
@@ -71,6 +71,13 @@ test('only approved external links are offered and assets stay under the Pages b
     elements.map(element => element.getAttribute('src') ?? element.getAttribute('href')),
   )
   expect(assets.length).toBeGreaterThan(0)
-  for (const asset of assets) expect(asset).toMatch(/^\/about-me\//)
+  for (const asset of assets) {
+    expect(asset).toMatch(/^\/(?:assets\/[^/]+|favicon\.svg)$/)
+    const response = await page.request.get(asset!)
+    expect(response.status()).toBe(200)
+    expect(response.headers()['content-type']).not.toContain('text/html')
+  }
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://about.ivanfilho.com/')
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://about.ivanfilho.com/')
   await expect(page.getByRole('article').filter({ has: page.getByRole('heading', { name: 'Autopilot', exact: true }) }).getByRole('link')).toHaveCount(0)
 })
