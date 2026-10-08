@@ -7,3 +7,6 @@ dist/
 !.env.*.enc
 !.env.example
 private/
+*.tsbuildinfo
+playwright-report/
+test-results/
