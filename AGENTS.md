@@ -9,7 +9,8 @@ This repository contains Ivan Filho's English personal portfolio, built with Rea
 - Run `npm run check`, `npm run build`, and `npm run test:browser` (install Chromium with `npx playwright install chromium` first). Browser checks use the production build.
 - See README.md for local preview and GitHub Pages setup.
 - Deploy to GitHub Pages through GitHub Actions. Upload the build as an artifact; never commit `dist/` or `node_modules/`.
-- Support the repository subpath `/about-me/` when configuring asset URLs and deployment.
+- Serve the custom domain `https://about.ivanfilho.com/` at the root `/`. Keep Vite base, asset URLs, canonical/social metadata, and browser-test URLs consistent.
+- DNS and GitHub Pages domain settings are coordinated separately by Julia; do not change them as part of code-only deployment work.
 - Update README.md with actual setup, validation, and deployment commands after implementation.
 
 ## Content and Quality
