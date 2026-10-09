@@ -112,7 +112,8 @@ export default function App() {
             <div className="section-heading"><div><span className="eyebrow">01 / SELECTED WORK</span><h2 id="work-title">Built with <em>intent.</em></h2></div><p>Products, foundations, and tools.<br/>A few ways I put engineering to work.</p></div>
             <Project number="01" kind="OPEN SOURCE · CREATOR" title="dotenc" tags={['Developer experience', 'Encrypted environments']} visual={<DotencVisual />} links={<><TextLink href="https://dotenc.org">Explore dotenc</TextLink><TextLink href="https://github.com/dotenc/dotenc">Source code</TextLink></>}>
               <p className="project-lead">Your secrets. Your repo. One less thing to manage.</p>
-              <p>I created dotenc to make encrypted environments part of the Git workflow, using the SSH keys developers already have. It injects environments at command time, with editor integrations, documentation, and agent skills.</p>
+              <p>I created dotenc to make encrypted environments part of the Git workflow. It injects environments at command time, with editor integrations, documentation, and agent skills.</p>
+              <p>A PGP-style envelope design encrypts each environment with AES-256-GCM and wraps its data key separately for each recipient’s existing SSH identity: RSA-OAEP/SHA-256 for RSA keys, or ECIES for Ed25519 keys.</p>
               <p className="project-outcome">An open-source tool I use in my own projects.</p>
             </Project>
             <Project number="02" kind="CLIENT WORK · WEB IMPLEMENTATION" title="Clade website" tags={['Responsive interfaces', 'Motion', 'Design collaboration']} visual={<CladeVisual />} links={<TextLink href="https://clade.co">Visit Clade</TextLink>}>
@@ -122,13 +123,13 @@ export default function App() {
             </Project>
             <Project number="03" kind="CLIENT WORK · FRONTEND ARCHITECTURE" title="Clade design system" tags={['shadcn/ui', 'Storybook', 'tailwind-variants']} visual={<SystemVisual />}>
               <p className="project-lead">Less rework. A stronger foundation for what comes next.</p>
-              <p>Recurring rework, duplicated UI, and tightly coupled application logic made changes harder than they needed to be. I proposed the architecture and wrote frontend guidelines around reusable components, composition, and clear separation of concerns.</p>
-              <p>Storybook isolation, interaction and accessibility tests, and explicit variants replaced risky style overrides with a more maintainable approach.</p>
+              <p>Recurring rework, duplicated UI, and tightly coupled application logic made changes harder than they needed to be. I proposed the architecture and wrote frontend guidelines to make UI boundaries explicit.</p>
+              <p>Built around shadcn/ui and React composition, the system uses tailwind-variants for explicit component variants. Storybook isolates reusable UI for interaction and accessibility testing, while props or application wrappers keep business logic and server data outside those components.</p>
               <p className="project-outcome">Less complexity, safer maintenance, and faster feature delivery.</p>
             </Project>
-            <Project number="04" kind="CUSTOM TOOLING · AI ENGINEERING" title="Autopilot" tags={['Agent orchestration', 'Next.js', 'WebSockets']} visual={<AutopilotVisual />}>
+            <Project number="04" kind="CUSTOM TOOLING · AI ENGINEERING" title="Autopilot" tags={['tmux', 'Git worktrees', 'WebSockets']} visual={<AutopilotVisual />}>
               <p className="project-lead">Parallel engineering, with human decisions in the loop.</p>
-              <p>In my Clade workflow, Autopilot turns Slack requests into a prioritized Shortcut queue. Its event-driven orchestrator coordinates agents in isolated Git worktrees with explicit shared-resource allocation.</p>
+              <p>In my Clade workflow, Autopilot turns Slack requests into a prioritized Shortcut queue. Separate tmux sessions run the coding agents, while isolated Git worktrees keep their code changes independent. An event-driven scheduler coordinates shared development resources.</p>
               <p>Workflows cover implementation, browser validation, CI and review feedback, the PR and merge lifecycle, and deployment verification. A Next.js, React, TypeScript, and shadcn/ui dashboard uses WebSocket updates to surface progress, blockers, PRs, and human decisions—recorded separately from execution.</p>
               <p className="project-outcome">It handled smaller website feedback items while I focused on the broader Clade implementation, reducing context switching.</p>
             </Project>
